@@ -1,0 +1,12 @@
+{
+  "name": "g-power-landing-page",
+  "version": "1.0.0",
+  "description": "GreenPower Ethiopia Landing Page",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "npx http-server -p 3000 -o"
+  },
+  "devDependencies": {
+    "gh-pages": "^6.3.0"
+  }
+}
