@@ -71,7 +71,11 @@
 
     function showSlide(index) {
       slides.forEach(slide => slide.classList.remove('active'));
-      indicators.forEach(indicator => indicator.classList.remove('active'));
+      indicators.forEach((indicator, i) => {
+        indicator.classList.remove('active');
+        indicator.setAttribute('aria-selected', i === index ? 'true' : 'false');
+        indicator.setAttribute('tabindex', i === index ? '0' : '-1');
+      });
 
       if (slides[index]) {
         slides[index].classList.add('active');
@@ -87,11 +91,15 @@
     }
 
     function startSlideshow() {
+      if (slideInterval) clearInterval(slideInterval);
       slideInterval = setInterval(nextSlide, 5000);
     }
 
     function stopSlideshow() {
-      clearInterval(slideInterval);
+      if (slideInterval) {
+        clearInterval(slideInterval);
+        slideInterval = null;
+      }
     }
 
     indicators.forEach((indicator, index) => {
@@ -100,6 +108,17 @@
         showSlide(currentSlide);
         stopSlideshow();
         startSlideshow();
+      });
+
+      // Keyboard support
+      indicator.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          currentSlide = index;
+          showSlide(currentSlide);
+          stopSlideshow();
+          startSlideshow();
+        }
       });
     });
 
@@ -117,14 +136,17 @@
     const toggle = document.getElementById('nav-toggle');
     const menu = document.getElementById('nav-menu');
 
-    if (!toggle || !menu) return;
+    if (!menu) return;
 
-    toggle.addEventListener('click', function() {
-      menu.classList.toggle('active');
-      toggle.classList.toggle('active');
-    });
+    // Only add toggle functionality if toggle exists (hidden on mobile with normal menu)
+    if (toggle) {
+      toggle.addEventListener('click', function() {
+        menu.classList.toggle('active');
+        toggle.classList.toggle('active');
+      });
+    }
 
-    // Handle dropdown on mobile
+    // Handle dropdown on mobile and desktop
     const dropdownToggle = menu.querySelector('.nav-link-dropdown');
     const dropdown = menu.querySelector('.nav-dropdown');
     
@@ -133,21 +155,42 @@
         if (window.innerWidth <= 768) {
           e.preventDefault();
           dropdown.classList.toggle('active');
+          dropdownToggle.setAttribute('aria-expanded', dropdown.classList.contains('active'));
           const arrow = dropdownToggle.querySelector('.dropdown-arrow');
           if (arrow) {
             arrow.style.transform = dropdown.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
           }
         }
       });
+
+      // Handle hover on desktop
+      if (window.innerWidth > 768) {
+        dropdownToggle.addEventListener('mouseenter', function() {
+          dropdown.classList.add('active');
+        });
+        
+        const navItem = dropdownToggle.closest('.nav-item-dropdown');
+        if (navItem) {
+          navItem.addEventListener('mouseleave', function() {
+            dropdown.classList.remove('active');
+          });
+        }
+      }
     }
 
+    // Close menu when clicking nav links (only if toggle exists)
     const navLinks = menu.querySelectorAll('.nav-link:not(.nav-link-dropdown), .nav-dropdown-link');
     navLinks.forEach(link => {
       link.addEventListener('click', function() {
-        menu.classList.remove('active');
-        toggle.classList.remove('active');
+        if (toggle) {
+          menu.classList.remove('active');
+          toggle.classList.remove('active');
+        }
         if (dropdown) {
           dropdown.classList.remove('active');
+          if (dropdownToggle) {
+            dropdownToggle.setAttribute('aria-expanded', 'false');
+          }
         }
       });
     });
@@ -200,18 +243,56 @@
       const question = item.querySelector('.faq-question');
       if (!question) return;
 
+      // Handle click
       question.addEventListener('click', function() {
-        const isActive = item.classList.contains('active');
-        
-        faqItems.forEach(otherItem => {
-          otherItem.classList.remove('active');
-        });
+        toggleFAQ(item, question);
+      });
 
-        if (!isActive) {
-          item.classList.add('active');
+      // Handle keyboard (Enter and Space)
+      question.addEventListener('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          toggleFAQ(item, question);
         }
       });
     });
+
+    function toggleFAQ(item, question) {
+      const isActive = item.classList.contains('active');
+      const answerId = question.getAttribute('aria-controls');
+      const answer = answerId ? document.getElementById(answerId) : null;
+      
+      // Close all other items
+      faqItems.forEach(otherItem => {
+        if (otherItem !== item) {
+          otherItem.classList.remove('active');
+          const otherQuestion = otherItem.querySelector('.faq-question');
+          const otherAnswerId = otherQuestion?.getAttribute('aria-controls');
+          const otherAnswer = otherAnswerId ? document.getElementById(otherAnswerId) : null;
+          if (otherQuestion) {
+            otherQuestion.setAttribute('aria-expanded', 'false');
+          }
+          if (otherAnswer) {
+            otherAnswer.setAttribute('aria-hidden', 'true');
+          }
+        }
+      });
+
+      // Toggle current item
+      if (!isActive) {
+        item.classList.add('active');
+        question.setAttribute('aria-expanded', 'true');
+        if (answer) {
+          answer.setAttribute('aria-hidden', 'false');
+        }
+      } else {
+        item.classList.remove('active');
+        question.setAttribute('aria-expanded', 'false');
+        if (answer) {
+          answer.setAttribute('aria-hidden', 'true');
+        }
+      }
+    }
   }
 
   // Reading Progress Bar
@@ -331,35 +412,136 @@
     }
   }
 
-  // Form Handling
+  // Form Handling with Formspree Integration
   function initForm() {
     const forms = document.querySelectorAll('#contact-form, #modal-form');
     
     forms.forEach(form => {
       if (!form) return;
 
-      form.addEventListener('submit', function(e) {
+      form.addEventListener('submit', async function(e) {
         e.preventDefault();
         
+        const submitButton = form.querySelector('button[type="submit"]');
+        const originalButtonText = submitButton ? submitButton.textContent : 'Send Request';
         const formData = new FormData(form);
         const data = Object.fromEntries(formData);
 
+        // Validation
         if (!data.name || !data.phone) {
-          alert('Please fill in all required fields');
+          showMessage('error', 'Please fill in all required fields (Name and Phone)', form);
           return;
         }
 
-        alert('Thank you! We will contact you within 24-48 hours.\n\nNote: Replace the form action with your endpoint (Formspree/Netlify/custom API).');
-        
-        form.reset();
-        
-        const modal = document.getElementById('form-modal');
-        if (modal && modal.classList.contains('active')) {
-          modal.classList.remove('active');
-          document.body.style.overflow = '';
+        // Phone validation (Ethiopian format: +251XXXXXXXXX or 0XXXXXXXXX or 09XXXXXXXX)
+        const phoneRegex = /^(\+251|0|251)?[79]\d{8}$/;
+        const cleanPhone = data.phone.replace(/[\s-]/g, '');
+        if (!phoneRegex.test(cleanPhone)) {
+          showMessage('error', 'Please enter a valid Ethiopian phone number (e.g., +251 911 276 877)', form);
+          return;
+        }
+
+        // Show loading state
+        if (submitButton) {
+          submitButton.disabled = true;
+          submitButton.textContent = 'Sending...';
+          submitButton.style.opacity = '0.7';
+        }
+
+        try {
+          const response = await fetch(form.action, {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'Accept': 'application/json'
+            }
+          });
+
+          if (response.ok) {
+            showMessage('success', 'Thank you! We will contact you within 24-48 hours.', form);
+            form.reset();
+            
+            // Close modal if open
+            const modal = document.getElementById('form-modal');
+            if (modal && modal.classList.contains('active')) {
+              setTimeout(() => {
+                modal.classList.remove('active');
+                document.body.style.overflow = '';
+              }, 2000);
+            }
+          } else {
+            const errorData = await response.json();
+            showMessage('error', errorData.error || 'Something went wrong. Please try again.', form);
+          }
+        } catch (error) {
+          showMessage('error', 'Network error. Please check your connection and try again.', form);
+        } finally {
+          // Reset button state
+          if (submitButton) {
+            submitButton.disabled = false;
+            submitButton.textContent = originalButtonText;
+            submitButton.style.opacity = '1';
+          }
         }
       });
     });
+  }
+
+  // Show styled message (success or error)
+  function showMessage(type, message, form) {
+    // Remove existing messages
+    const existingMessage = form.querySelector('.form-message');
+    if (existingMessage) {
+      existingMessage.remove();
+    }
+
+    // Create message element
+    const messageEl = document.createElement('div');
+    messageEl.className = `form-message form-message-${type}`;
+    messageEl.setAttribute('role', 'alert');
+    messageEl.setAttribute('aria-live', 'polite');
+    
+    // Add icon
+    const icon = document.createElement('span');
+    icon.className = 'form-message-icon';
+    if (type === 'success') {
+      icon.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M20 6L9 17l-5-5"/></svg>';
+    } else {
+      icon.innerHTML = '<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 6L6 18M6 6l12 12"/></svg>';
+    }
+    
+    // Add text
+    const text = document.createElement('span');
+    text.className = 'form-message-text';
+    text.textContent = message;
+    
+    messageEl.appendChild(icon);
+    messageEl.appendChild(text);
+    
+    // Insert before submit button
+    const submitButton = form.querySelector('button[type="submit"]');
+    if (submitButton) {
+      form.insertBefore(messageEl, submitButton);
+    } else {
+      form.appendChild(messageEl);
+    }
+
+    // Auto-remove after 5 seconds for success, 7 seconds for error
+    const removeDelay = type === 'success' ? 5000 : 7000;
+    setTimeout(() => {
+      if (messageEl.parentNode) {
+        messageEl.style.opacity = '0';
+        messageEl.style.transform = 'translateY(-10px)';
+        setTimeout(() => {
+          if (messageEl.parentNode) {
+            messageEl.remove();
+          }
+        }, 300);
+      }
+    }, removeDelay);
+
+    // Scroll to message if needed
+    messageEl.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
   }
 
   // Scroll Animations

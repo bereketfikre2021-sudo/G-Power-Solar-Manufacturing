@@ -2,7 +2,8 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>G-Power Solar Manufacturing — Best Solar Company in Ethiopia | Lithium Battery & Inverter Supplier</title>
   <meta name="description" content="G-Power Solar Manufacturing - Leading solar energy solutions provider in Ethiopia. Expert solar installation, lithium battery supplier, hybrid inverter supplier, off-grid solar systems, and solar panel installation. Serving Addis Ababa and all of Ethiopia.">
   <meta name="keywords" content="Ethiopia solar energy solutions, Lithium battery supplier Ethiopia, Solar inverter supplier Ethiopia, Best solar company in Ethiopia, Solar installation Ethiopia, Home solar system Ethiopia, Off-grid solar Ethiopia, Hybrid inverter Ethiopia, Dyness battery Ethiopia, Deye battery Ethiopia, 5kW inverter Ethiopia, 10kW inverter Ethiopia, Solar power backup Ethiopia, Solar panel installation Ethiopia, Elevator company Ethiopia, Lift installation Ethiopia, Home elevator Ethiopia, Elevator maintenance Ethiopia, Passenger lift Ethiopia, Goods lift Ethiopia, Elevator supplier Addis Ababa, Best elevator company Ethiopia, Elevator spare parts Ethiopia, Hydraulic lift Ethiopia, MRL elevator Ethiopia, Elevator modernization Ethiopia">
@@ -160,36 +161,58 @@
   </script>
   
   <link rel="canonical" href="https://gpower.et/">
+  
+  <!-- Performance: Resource Hints -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/x-icon" href="/favicon.ico">
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+  
+  <!-- Fonts with display=swap for performance -->
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="/assets/css/styles.css">
+  
+  <!-- Critical CSS - inline or preload -->
+  <link rel="preload" href="/assets/css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="/assets/css/styles.css"></noscript>
+  
+  <!-- Theme Color for Mobile -->
+  <meta name="theme-color" content="#00D9A5">
+  <meta name="msapplication-TileColor" content="#00D9A5">
 </head>
 <body>
+  <!-- Skip to main content for accessibility -->
+  <a href="#main-content" class="skip-link" aria-label="Skip to main content">Skip to main content</a>
+  
   <!-- Navigation -->
-  <nav class="navbar">
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
     <div class="nav-container">
       <a href="#home" class="nav-brand">
         <span class="brand-icon">⚡</span>
         <span class="brand-text">G-Power</span>
       </a>
-      <ul class="nav-menu" id="nav-menu">
-        <li><a href="#home" class="nav-link">Home</a></li>
-        <li><a href="#about" class="nav-link">About</a></li>
-        <li class="nav-item-dropdown">
-          <a href="#solutions" class="nav-link nav-link-dropdown">
+      <ul class="nav-menu" id="nav-menu" role="menubar">
+        <li role="none"><a href="#home" class="nav-link" role="menuitem">Home</a></li>
+        <li role="none"><a href="#about" class="nav-link" role="menuitem">About</a></li>
+        <li class="nav-item-dropdown" role="none">
+          <a href="#solutions" class="nav-link nav-link-dropdown" role="menuitem" aria-haspopup="true" aria-expanded="false">
             Services
-            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" class="dropdown-arrow">
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" class="dropdown-arrow" aria-hidden="true">
               <path d="M3 4.5L6 7.5L9 4.5"/>
             </svg>
           </a>
-          <ul class="nav-dropdown">
-            <li><a href="#solutions" class="nav-dropdown-link">Solutions</a></li>
-            <li><a href="#products" class="nav-dropdown-link">Products</a></li>
-            <li><a href="#services" class="nav-dropdown-link">Services</a></li>
+          <ul class="nav-dropdown" role="menu">
+            <li role="none"><a href="#solutions" class="nav-dropdown-link" role="menuitem">Solutions</a></li>
+            <li role="none"><a href="#products" class="nav-dropdown-link" role="menuitem">Products</a></li>
+            <li role="none"><a href="#services" class="nav-dropdown-link" role="menuitem">Services</a></li>
           </ul>
         </li>
-        <li><a href="#contact" class="nav-link">Contact</a></li>
+        <li role="none"><a href="#contact" class="nav-link" role="menuitem">Contact</a></li>
       </ul>
       <a href="tel:+251911276877" class="nav-cta">Call Us</a>
       <button class="nav-toggle" id="nav-toggle" aria-label="Toggle menu">
@@ -200,8 +223,10 @@
     </div>
   </nav>
 
+  <!-- Main Content -->
+  <main id="main-content">
   <!-- Hero Section -->
-  <section id="home" class="hero">
+  <section id="home" class="hero" aria-label="Hero section">
     <div class="hero-slideshow">
       <div class="hero-slide active">
         <img src="/assets/img/Hero Image -1.webp" alt="Solar Energy Solutions Ethiopia - G-Power Solar Manufacturing" loading="eager">
@@ -254,12 +279,12 @@
         </div>
       </div>
     </div>
-    <div class="hero-indicators">
-      <span class="indicator active" data-slide="0"></span>
-      <span class="indicator" data-slide="1"></span>
-      <span class="indicator" data-slide="2"></span>
-      <span class="indicator" data-slide="3"></span>
-      <span class="indicator" data-slide="4"></span>
+      <div class="hero-indicators" role="tablist" aria-label="Hero image slideshow">
+      <button class="indicator active" data-slide="0" role="tab" aria-label="Slide 1" aria-selected="true" tabindex="0"></button>
+      <button class="indicator" data-slide="1" role="tab" aria-label="Slide 2" aria-selected="false" tabindex="-1"></button>
+      <button class="indicator" data-slide="2" role="tab" aria-label="Slide 3" aria-selected="false" tabindex="-1"></button>
+      <button class="indicator" data-slide="3" role="tab" aria-label="Slide 4" aria-selected="false" tabindex="-1"></button>
+      <button class="indicator" data-slide="4" role="tab" aria-label="Slide 5" aria-selected="false" tabindex="-1"></button>
     </div>
   </section>
 
@@ -493,59 +518,70 @@
       </div>
       <div class="faq-container">
         <div class="faq-item">
-          <div class="faq-question">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
             <span>How long do lithium batteries last?</span>
-            <span class="faq-icon">
+            <span class="faq-icon" aria-hidden="true">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
             </span>
-          </div>
-          <div class="faq-answer">Modern lithium batteries typically last 5–10 years depending on usage patterns and proper maintenance. Our systems include monitoring to maximize lifespan.</div>
+          </button>
+          <div class="faq-answer" id="faq-answer-1" role="region" aria-hidden="true">Modern lithium batteries typically last 5–10 years depending on usage patterns and proper maintenance. Our systems include monitoring to maximize lifespan.</div>
         </div>
         <div class="faq-item">
-          <div class="faq-question">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
             <span>Can I power my entire home with solar?</span>
-            <span class="faq-icon">
+            <span class="faq-icon" aria-hidden="true">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
             </span>
-          </div>
-          <div class="faq-answer">Yes! With proper system sizing (panels + inverter + battery), we can design a complete solution for full home power independence.</div>
+          </button>
+          <div class="faq-answer" id="faq-answer-1" role="region" aria-hidden="true">Modern lithium batteries typically last 5–10 years depending on usage patterns and proper maintenance. Our systems include monitoring to maximize lifespan.</div>
         </div>
         <div class="faq-item">
-          <div class="faq-question">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
+            <span>Can I power my entire home with solar?</span>
+            <span class="faq-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </span>
+          </button>
+          <div class="faq-answer" id="faq-answer-2" role="region" aria-hidden="true">Yes! With proper system sizing (panels + inverter + battery), we can design a complete solution for full home power independence.</div>
+        </div>
+        <div class="faq-item">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-3">
             <span>Do you offer maintenance plans?</span>
-            <span class="faq-icon">
+            <span class="faq-icon" aria-hidden="true">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
             </span>
-          </div>
-          <div class="faq-answer">Yes, we provide comprehensive maintenance and monitoring plans to ensure your system performs at peak efficiency year-round.</div>
+          </button>
+          <div class="faq-answer" id="faq-answer-3" role="region" aria-hidden="true">Yes, we provide comprehensive maintenance and monitoring plans to ensure your system performs at peak efficiency year-round.</div>
         </div>
         <div class="faq-item">
-          <div class="faq-question">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-4">
             <span>Are systems compatible with Dyness/Deye batteries?</span>
-            <span class="faq-icon">
+            <span class="faq-icon" aria-hidden="true">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
             </span>
-          </div>
-          <div class="faq-answer">Absolutely. We supply systems compatible with all major battery brands and can recommend the best fit for your needs.</div>
+          </button>
+          <div class="faq-answer" id="faq-answer-4" role="region" aria-hidden="true">Absolutely. We supply systems compatible with all major battery brands and can recommend the best fit for your needs.</div>
         </div>
         <div class="faq-item">
-          <div class="faq-question">
+          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-5">
             <span>How quickly can I get an estimate?</span>
-            <span class="faq-icon">
+            <span class="faq-icon" aria-hidden="true">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="6 9 12 15 18 9"></polyline>
               </svg>
             </span>
-          </div>
-          <div class="faq-answer">After submitting your request, we typically respond within 24–48 hours with a detailed site assessment and proposal.</div>
+          </button>
+          <div class="faq-answer" id="faq-answer-5" role="region" aria-hidden="true">After submitting your request, we typically respond within 24–48 hours with a detailed site assessment and proposal.</div>
         </div>
       </div>
     </div>
@@ -780,7 +816,7 @@
           </a>
         </div>
 
-        <form id="contact-form" class="contact-form-minimal">
+        <form id="contact-form" class="contact-form-minimal" action="https://formspree.io/f/xeowywyn" method="POST">
           <div class="form-row-minimal">
             <input type="text" name="name" required placeholder="Name *">
             <input type="tel" name="phone" required placeholder="Phone *">
@@ -800,9 +836,10 @@
       </div>
     </div>
   </section>
+  </main>
 
   <!-- Footer -->
-  <footer class="footer">
+  <footer class="footer" role="contentinfo">
     <div class="container">
       <div class="footer-content">
         <div class="footer-brand">
@@ -846,7 +883,7 @@
     <div class="modal-content">
       <button class="modal-close" id="close-form" aria-label="Close modal">&times;</button>
       <h2>Request a Free Estimate</h2>
-      <form id="modal-form" class="contact-form">
+      <form id="modal-form" class="contact-form" action="https://formspree.io/f/xeowywyn" method="POST">
         <div class="form-group">
           <label>Name *</label>
           <input type="text" name="name" required>
@@ -889,6 +926,16 @@
   <!-- Reading Progress Bar -->
   <div class="progress-bar" id="progress-bar"></div>
 
-  <script src="/assets/js/main.js"></script>
+  <!-- Defer non-critical JavaScript for performance -->
+  <script src="/assets/js/main.js" defer></script>
+  
+  <!-- Add noscript fallback for critical functionality -->
+  <noscript>
+    <style>
+      .nav-menu { display: flex !important; }
+      .hero-slideshow { display: block; }
+      .faq-answer { max-height: none !important; padding: 1rem !important; }
+    </style>
+  </noscript>
 </body>
 </html>
