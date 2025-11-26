@@ -15,6 +15,8 @@
     initForm();
     initScrollAnimations();
     initCounterAnimation();
+    initTestimonialCarousel();
+    initMVVCarousel();
     setYear();
   });
 
@@ -122,11 +124,31 @@
       toggle.classList.toggle('active');
     });
 
-    const navLinks = menu.querySelectorAll('.nav-link');
+    // Handle dropdown on mobile
+    const dropdownToggle = menu.querySelector('.nav-link-dropdown');
+    const dropdown = menu.querySelector('.nav-dropdown');
+    
+    if (dropdownToggle && dropdown) {
+      dropdownToggle.addEventListener('click', function(e) {
+        if (window.innerWidth <= 768) {
+          e.preventDefault();
+          dropdown.classList.toggle('active');
+          const arrow = dropdownToggle.querySelector('.dropdown-arrow');
+          if (arrow) {
+            arrow.style.transform = dropdown.classList.contains('active') ? 'rotate(180deg)' : 'rotate(0deg)';
+          }
+        }
+      });
+    }
+
+    const navLinks = menu.querySelectorAll('.nav-link:not(.nav-link-dropdown), .nav-dropdown-link');
     navLinks.forEach(link => {
       link.addEventListener('click', function() {
         menu.classList.remove('active');
         toggle.classList.remove('active');
+        if (dropdown) {
+          dropdown.classList.remove('active');
+        }
       });
     });
   }
@@ -363,6 +385,132 @@
       el.style.transition = `opacity 0.6s ease ${index * 0.1}s, transform 0.6s ease ${index * 0.1}s`;
       observer.observe(el);
     });
+  }
+
+  // Testimonial Carousel for Mobile
+  function initTestimonialCarousel() {
+    const testimonialsTrack = document.querySelector('.testimonials-track');
+    const testimonialsScroll = document.querySelector('.testimonials-scroll');
+    if (!testimonialsTrack || !testimonialsScroll) return;
+
+    let slideInterval = null;
+
+    function isMobile() {
+      return window.innerWidth <= 768;
+    }
+
+    function initCarousel() {
+      // Clear any existing interval
+      if (slideInterval) {
+        clearInterval(slideInterval);
+        slideInterval = null;
+      }
+
+      if (!isMobile()) {
+        // Reset to default behavior on desktop
+        testimonialsTrack.style.transform = '';
+        testimonialsTrack.style.transition = '';
+        return;
+      }
+
+      // Get only the first set of unique testimonial cards (not duplicates)
+      const allCards = testimonialsTrack.querySelectorAll('.testimonial-card');
+      const uniqueCards = Array.from(allCards).slice(0, 4); // First 4 are unique
+      
+      if (uniqueCards.length === 0) return;
+
+      let currentIndex = 0;
+
+      function slideToNext() {
+        // Get the first card to calculate width
+        const firstCard = uniqueCards[0];
+        if (!firstCard) return;
+        
+        // Calculate card width including gap
+        const cardWidth = firstCard.offsetWidth;
+        const gap = 16; // 1rem gap in pixels
+        const totalWidth = cardWidth + gap;
+        
+        currentIndex = (currentIndex + 1) % uniqueCards.length;
+        const translateX = -currentIndex * totalWidth;
+        testimonialsTrack.style.transform = `translateX(${translateX}px)`;
+      }
+
+      // Initialize position
+      testimonialsTrack.style.transform = 'translateX(0)';
+      testimonialsTrack.style.transition = 'transform 0.6s ease-in-out';
+
+      // Start auto-slide with 3 seconds duration
+      slideInterval = setInterval(slideToNext, 3000);
+
+      // Reinitialize on resize
+      let resizeTimeout;
+      const handleResize = () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(() => {
+          initCarousel();
+        }, 250);
+      };
+
+      window.addEventListener('resize', handleResize);
+    }
+
+    // Initialize carousel
+    initCarousel();
+  }
+
+  // Mission, Vision, Values Carousel
+  function initMVVCarousel() {
+    const slides = document.querySelectorAll('.mvv-slide');
+    const indicators = document.querySelectorAll('.mvv-indicator');
+    let currentSlide = 0;
+    let slideInterval;
+
+    if (slides.length === 0) return;
+
+    function showSlide(index) {
+      slides.forEach(slide => slide.classList.remove('active'));
+      indicators.forEach(indicator => indicator.classList.remove('active'));
+
+      if (slides[index]) {
+        slides[index].classList.add('active');
+      }
+      if (indicators[index]) {
+        indicators[index].classList.add('active');
+      }
+    }
+
+    function nextSlide() {
+      currentSlide = (currentSlide + 1) % slides.length;
+      showSlide(currentSlide);
+    }
+
+    function startSlideshow() {
+      slideInterval = setInterval(nextSlide, 4000); // 4 seconds per slide
+    }
+
+    function stopSlideshow() {
+      clearInterval(slideInterval);
+    }
+
+    // Indicator click handlers
+    indicators.forEach((indicator, index) => {
+      indicator.addEventListener('click', function() {
+        currentSlide = index;
+        showSlide(currentSlide);
+        stopSlideshow();
+        startSlideshow();
+      });
+    });
+
+    // Pause on hover
+    const carouselWrapper = document.querySelector('.mvv-carousel-wrapper');
+    if (carouselWrapper) {
+      carouselWrapper.addEventListener('mouseenter', stopSlideshow);
+      carouselWrapper.addEventListener('mouseleave', startSlideshow);
+    }
+
+    startSlideshow();
   }
 
   // Set Year

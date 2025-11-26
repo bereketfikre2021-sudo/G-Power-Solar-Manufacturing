@@ -176,8 +176,19 @@
       <ul class="nav-menu" id="nav-menu">
         <li><a href="#home" class="nav-link">Home</a></li>
         <li><a href="#about" class="nav-link">About</a></li>
-        <li><a href="#solutions" class="nav-link">Solutions</a></li>
-        <li><a href="#services" class="nav-link">Services</a></li>
+        <li class="nav-item-dropdown">
+          <a href="#solutions" class="nav-link nav-link-dropdown">
+            Services
+            <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="2" class="dropdown-arrow">
+              <path d="M3 4.5L6 7.5L9 4.5"/>
+            </svg>
+          </a>
+          <ul class="nav-dropdown">
+            <li><a href="#solutions" class="nav-dropdown-link">Solutions</a></li>
+            <li><a href="#products" class="nav-dropdown-link">Products</a></li>
+            <li><a href="#services" class="nav-dropdown-link">Services</a></li>
+          </ul>
+        </li>
         <li><a href="#contact" class="nav-link">Contact</a></li>
       </ul>
       <a href="tel:+251911276877" class="nav-cta">Call Us</a>
@@ -286,6 +297,44 @@
           <p>Professional installation and maintenance by certified technicians</p>
         </div>
       </div>
+
+      <!-- Mission, Vision, Values Section -->
+      <div class="mvv-carousel-wrapper">
+        <div class="mvv-carousel">
+          <div class="mvv-slide active">
+            <div class="mvv-title">MISSION</div>
+            <div class="mvv-content">
+              <p>TO DELIVER INNOVATIVE, SUSTAINABLE, AND RELIABLE GREEN ENERGY SOLUTIONS TO COMMUNITIES, BUSINESSES, AND INDIVIDUALS TO OVERCOME ENERGY CHALLENGES. WE ENSURE UNINTERRUPTED POWER WHILE CONTRIBUTING TO A CLEANER, MORE ENVIRONMENTALLY FRIENDLY FUTURE.</p>
+            </div>
+          </div>
+
+          <div class="mvv-slide">
+            <div class="mvv-title">VISION</div>
+            <div class="mvv-content">
+              <p>TO BE THE LEADING ADVANCED ENERGY STORAGE AND SOLAR SOLUTIONS PROVIDER IN EAST AFRICA, DRIVING PROGRESS AND SUSTAINABILITY BY TRANSFORMING HOW ENERGY IS STORED, MANAGED, AND UTILIZED ACROSS ALL SECTORS.</p>
+            </div>
+          </div>
+
+          <div class="mvv-slide">
+            <div class="mvv-title">VALUES</div>
+            <div class="mvv-content">
+              <ul class="values-list">
+                <li><span class="value-arrow">=></span> CUSTOMER SATISFACTION</li>
+                <li><span class="value-arrow">=></span> RELIABILITY</li>
+                <li><span class="value-arrow">=></span> SUSTAINABILITY</li>
+                <li><span class="value-arrow">=></span> INNOVATION</li>
+                <li><span class="value-arrow">=></span> INTEGRITY</li>
+                <li><span class="value-arrow">=></span> EXCELLENCE</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+        <div class="mvv-indicators">
+          <span class="mvv-indicator active" data-slide="0"></span>
+          <span class="mvv-indicator" data-slide="1"></span>
+          <span class="mvv-indicator" data-slide="2"></span>
+        </div>
+      </div>
     </div>
   </section>
 
@@ -349,6 +398,45 @@
     </div>
   </section>
 
+  <!-- Products Section -->
+  <section id="products" class="section products-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-label">Products</span>
+        <h2 class="section-title">Our Product Categories</h2>
+        <p class="section-description">Choose the perfect power solution for your needs</p>
+      </div>
+      <div class="products-grid">
+        <div class="product-card">
+          <div class="product-logo product-logo-mini">
+            <img src="/assets/img/GP Mini.png" alt="GP Mini - 300w to 4.5KW Power Solutions" loading="lazy">
+          </div>
+          <h3>GP Mini</h3>
+          <p class="product-power">(300w-4.5KW)</p>
+          <p class="product-description">Compact, efficient, and affordable designed for customers seeking reliable power in a smaller, budget-friendly solution.</p>
+        </div>
+
+        <div class="product-card">
+          <div class="product-logo product-logo-standard">
+            <img src="/assets/img/GP.png" alt="GP - 5KW to 12KW Power Solutions" loading="lazy">
+          </div>
+          <h3>GP</h3>
+          <p class="product-power">(5KW-12KW)</p>
+          <p class="product-description">Our standard line offering a balanced combination of performance, durability, and versatility for everyday applications.</p>
+        </div>
+
+        <div class="product-card">
+          <div class="product-logo product-logo-premium">
+            <img src="/assets/img/GP +.png" alt="GP Plus - 300KW and Above Premium Power Solutions" loading="lazy">
+          </div>
+          <h3>GP +</h3>
+          <p class="product-power">(&gt;=300KW)</p>
+          <p class="product-description">The premium choice, engineered with advanced features and maximum power to meet the most demanding needs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- Services Section -->
   <section id="services" class="section services-section">
     <div class="container">
@@ -407,35 +495,55 @@
         <div class="faq-item">
           <div class="faq-question">
             <span>How long do lithium batteries last?</span>
-            <span class="faq-icon">+</span>
+            <span class="faq-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </span>
           </div>
           <div class="faq-answer">Modern lithium batteries typically last 5–10 years depending on usage patterns and proper maintenance. Our systems include monitoring to maximize lifespan.</div>
         </div>
         <div class="faq-item">
           <div class="faq-question">
             <span>Can I power my entire home with solar?</span>
-            <span class="faq-icon">+</span>
+            <span class="faq-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </span>
           </div>
           <div class="faq-answer">Yes! With proper system sizing (panels + inverter + battery), we can design a complete solution for full home power independence.</div>
         </div>
         <div class="faq-item">
           <div class="faq-question">
             <span>Do you offer maintenance plans?</span>
-            <span class="faq-icon">+</span>
+            <span class="faq-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </span>
           </div>
           <div class="faq-answer">Yes, we provide comprehensive maintenance and monitoring plans to ensure your system performs at peak efficiency year-round.</div>
         </div>
         <div class="faq-item">
           <div class="faq-question">
             <span>Are systems compatible with Dyness/Deye batteries?</span>
-            <span class="faq-icon">+</span>
+            <span class="faq-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </span>
           </div>
           <div class="faq-answer">Absolutely. We supply systems compatible with all major battery brands and can recommend the best fit for your needs.</div>
         </div>
         <div class="faq-item">
           <div class="faq-question">
             <span>How quickly can I get an estimate?</span>
-            <span class="faq-icon">+</span>
+            <span class="faq-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+            </span>
           </div>
           <div class="faq-answer">After submitting your request, we typically respond within 24–48 hours with a detailed site assessment and proposal.</div>
         </div>
@@ -452,12 +560,24 @@
       </div>
       <div class="trusted-logos">
         <div class="trusted-logo-item">
+          <img src="/assets/img/Trusted by/Africa Water.png" alt="Africa Water" loading="lazy">
+          <span class="logo-name">Africa Water</span>
+        </div>
+        <div class="trusted-logo-item">
           <img src="/assets/img/Trusted by/Arsho Laboratories.png" alt="Arsho Laboratories" loading="lazy">
           <span class="logo-name">Arsho Laboratories</span>
         </div>
         <div class="trusted-logo-item">
           <img src="/assets/img/Trusted by/Beu Delivery.png" alt="Beu Delivery" loading="lazy">
           <span class="logo-name">Beu Delivery</span>
+        </div>
+        <div class="trusted-logo-item">
+          <img src="/assets/img/Trusted by/Capital Hotel & Spa.png" alt="Capital Hotel & Spa" loading="lazy">
+          <span class="logo-name">Capital Hotel & Spa</span>
+        </div>
+        <div class="trusted-logo-item">
+          <img src="/assets/img/Trusted by/Ethio Ceramics.png" alt="Ethio Ceramics" loading="lazy">
+          <span class="logo-name">Ethio Ceramics</span>
         </div>
         <div class="trusted-logo-item">
           <img src="/assets/img/Trusted by/Feres.png" alt="Feres" loading="lazy">
@@ -555,9 +675,9 @@
                 <div class="author-info">
                   <h4>Mr. Khalid</h4>
                   <p>Owner of Ertale International Agricultural dev't PLC</p>
+                </div>
+              </div>
             </div>
-          </div>
-        </div>
 
             <!-- Duplicated Set for Infinite Scroll -->
             <div class="testimonial-card">
@@ -686,27 +806,27 @@
     <div class="container">
       <div class="footer-content">
         <div class="footer-brand">
-          <div class="footer-logo">
+          <a href="#home" class="footer-logo">
             <span class="brand-icon">⚡</span>
-            <span class="brand-text">G-Power Solar Manufacturing</span>
-          </div>
+            <span class="brand-text">G-Power</span>
+          </a>
           <p class="footer-tagline">Powering the future with clean, renewable energy solutions.</p>
         </div>
 
-        <div class="footer-contact">
-          <a href="tel:+251911276877" class="footer-phone">
+        <div class="footer-links">
+          <a href="tel:+251911276877" class="footer-link">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
               <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/>
             </svg>
             <span>+251 911 276 877</span>
           </a>
-          <a href="https://wa.me/251911276877" class="footer-whatsapp" target="_blank" rel="noopener noreferrer">
+          <a href="https://wa.me/251911276877" class="footer-link" target="_blank" rel="noopener noreferrer">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
               <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
             </svg>
             <span>WhatsApp</span>
           </a>
-          <a href="https://www.tiktok.com/@g_power6?_r=1" class="footer-tiktok" target="_blank" rel="noopener noreferrer">
+          <a href="https://www.tiktok.com/@g_power6?_r=1" class="footer-link" target="_blank" rel="noopener noreferrer">
             <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
               <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-5.2 1.74 2.89 2.89 0 0 1 2.31-4.64 2.93 2.93 0 0 1 .88.13V9.4a6.84 6.84 0 0 0-1-.05A6.33 6.33 0 0 0 5 20.1a6.34 6.34 0 0 0 10.86-4.43v-7a8.16 8.16 0 0 0 4.77 1.52v-3.4a4.85 4.85 0 0 1-1-.1z"/>
             </svg>
