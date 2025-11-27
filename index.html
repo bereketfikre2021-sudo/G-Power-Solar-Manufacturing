@@ -160,9 +160,76 @@
   }
   </script>
   
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "How long do lithium batteries last?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Modern lithium batteries typically last 5–10 years depending on usage patterns and proper maintenance. Our systems include monitoring to maximize lifespan."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Can I power my entire home with solar?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes! With proper system sizing (panels + inverter + battery), we can design a complete solution for full home power independence."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Do you offer maintenance plans?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Yes, we provide comprehensive maintenance and monitoring plans to ensure your system performs at peak efficiency year-round."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Are systems compatible with Dyness/Deye batteries?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Absolutely. We supply systems compatible with all major battery brands and can recommend the best fit for your needs."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "How quickly can I get an estimate?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "After submitting your request, we typically respond within 24–48 hours with a detailed site assessment and proposal."
+        }
+      }
+    ]
+  }
+  </script>
+  
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://gpower.et/#home"
+      }
+    ]
+  }
+  </script>
+  
   <link rel="canonical" href="https://gpower.et/">
   
   <!-- Performance: Resource Hints -->
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com">
+  <link rel="dns-prefetch" href="https://fonts.googleapis.com">
+  <link rel="dns-prefetch" href="https://fonts.gstatic.com">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link rel="dns-prefetch" href="https://fonts.googleapis.com">
@@ -181,9 +248,58 @@
   <link rel="preload" href="/assets/css/styles.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
   <noscript><link rel="stylesheet" href="/assets/css/styles.css"></noscript>
   
+  <!-- PWA Manifest -->
+  <link rel="manifest" href="/manifest.webmanifest">
+  
   <!-- Theme Color for Mobile -->
   <meta name="theme-color" content="#00D9A5">
   <meta name="msapplication-TileColor" content="#00D9A5">
+  
+  <!-- Google Analytics 4 -->
+  <!-- Replace G-XXXXXXXXXX with your actual GA4 Measurement ID -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-XXXXXXXXXX', {
+      'anonymize_ip': true,
+      'cookie_flags': 'SameSite=None;Secure'
+    });
+    
+    // Track form submissions
+    document.addEventListener('DOMContentLoaded', function() {
+      const forms = document.querySelectorAll('#contact-form, #modal-form');
+      forms.forEach(form => {
+        form.addEventListener('submit', function() {
+          gtag('event', 'form_submission', {
+            'event_category': 'engagement',
+            'event_label': form.id || 'contact_form'
+          });
+        });
+      });
+      
+      // Track phone clicks
+      document.querySelectorAll('a[href^="tel:"]').forEach(link => {
+        link.addEventListener('click', function() {
+          gtag('event', 'phone_click', {
+            'event_category': 'engagement',
+            'event_label': 'phone_call'
+          });
+        });
+      });
+      
+      // Track WhatsApp clicks
+      document.querySelectorAll('a[href*="wa.me"]').forEach(link => {
+        link.addEventListener('click', function() {
+          gtag('event', 'whatsapp_click', {
+            'event_category': 'engagement',
+            'event_label': 'whatsapp_message'
+          });
+        });
+      });
+    });
+  </script>
 </head>
 <body>
   <!-- Skip to main content for accessibility -->
@@ -225,23 +341,51 @@
 
   <!-- Main Content -->
   <main id="main-content">
+  <!-- Breadcrumbs -->
+  <nav class="breadcrumbs" aria-label="Breadcrumb">
+    <div class="container">
+      <ol class="breadcrumb-list">
+        <li class="breadcrumb-item"><a href="#home">Home</a></li>
+      </ol>
+    </div>
+  </nav>
   <!-- Hero Section -->
   <section id="home" class="hero" aria-label="Hero section">
-    <div class="hero-slideshow">
+      <div class="hero-slideshow">
       <div class="hero-slide active">
-        <img src="/assets/img/Hero Image -1.webp" alt="Solar Energy Solutions Ethiopia - G-Power Solar Manufacturing" loading="eager">
+        <img src="/assets/img/Hero Image -1.webp" 
+             srcset="/assets/img/Hero Image -1.webp 1920w, /assets/img/Hero Image -1.webp 1280w, /assets/img/Hero Image -1.webp 768w"
+             sizes="100vw"
+             alt="Solar Energy Solutions Ethiopia - G-Power Solar Manufacturing" 
+             loading="eager">
       </div>
       <div class="hero-slide">
-        <img src="/assets/img/Hero Image -2.webp" alt="Solar Installation Ethiopia - Professional Solar Panel Installation Services" loading="lazy">
+        <img src="/assets/img/Hero Image -2.webp" 
+             srcset="/assets/img/Hero Image -2.webp 1920w, /assets/img/Hero Image -2.webp 1280w, /assets/img/Hero Image -2.webp 768w"
+             sizes="100vw"
+             alt="Solar Installation Ethiopia - Professional Solar Panel Installation Services" 
+             loading="lazy">
       </div>
       <div class="hero-slide">
-        <img src="/assets/img/Hero Image -3.webp" alt="Solar Panel Installation Ethiopia - High Quality Solar Panels" loading="lazy">
+        <img src="/assets/img/Hero Image -3.webp" 
+             srcset="/assets/img/Hero Image -3.webp 1920w, /assets/img/Hero Image -3.webp 1280w, /assets/img/Hero Image -3.webp 768w"
+             sizes="100vw"
+             alt="Solar Panel Installation Ethiopia - High Quality Solar Panels" 
+             loading="lazy">
       </div>
       <div class="hero-slide">
-        <img src="/assets/img/Hero Image -4.webp" alt="Off-grid Solar Ethiopia - Independent Solar Power Systems" loading="lazy">
+        <img src="/assets/img/Hero Image -4.webp" 
+             srcset="/assets/img/Hero Image -4.webp 1920w, /assets/img/Hero Image -4.webp 1280w, /assets/img/Hero Image -4.webp 768w"
+             sizes="100vw"
+             alt="Off-grid Solar Ethiopia - Independent Solar Power Systems" 
+             loading="lazy">
       </div>
       <div class="hero-slide">
-        <img src="/assets/img/Hero Image -5.webp" alt="Solar Power Backup Ethiopia - Reliable Solar Energy Backup Solutions" loading="lazy">
+        <img src="/assets/img/Hero Image -5.webp" 
+             srcset="/assets/img/Hero Image -5.webp 1920w, /assets/img/Hero Image -5.webp 1280w, /assets/img/Hero Image -5.webp 768w"
+             sizes="100vw"
+             alt="Solar Power Backup Ethiopia - Reliable Solar Energy Backup Solutions" 
+             loading="lazy">
       </div>
       <div class="hero-overlay"></div>
     </div>
@@ -431,32 +575,58 @@
         <h2 class="section-title">Our Product Categories</h2>
         <p class="section-description">Choose the perfect power solution for your needs</p>
       </div>
-      <div class="products-grid">
-        <div class="product-card">
-          <div class="product-logo product-logo-mini">
-            <img src="/assets/img/GP Mini.png" alt="GP Mini - 300w to 4.5KW Power Solutions" loading="lazy">
-          </div>
-          <h3>GP Mini</h3>
-          <p class="product-power">(300w-4.5KW)</p>
-          <p class="product-description">Compact, efficient, and affordable designed for customers seeking reliable power in a smaller, budget-friendly solution.</p>
+      
+      <!-- Product Tabs -->
+      <div class="product-tabs-wrapper">
+        <div class="product-tabs" role="tablist" aria-label="Product categories">
+          <button class="product-tab active" role="tab" aria-selected="true" aria-controls="tab-mini" id="tab-btn-mini" data-tab="mini">
+            <span class="tab-name">GP Mini</span>
+          </button>
+          <button class="product-tab" role="tab" aria-selected="false" aria-controls="tab-standard" id="tab-btn-standard" data-tab="standard">
+            <span class="tab-name">GP</span>
+          </button>
+          <button class="product-tab" role="tab" aria-selected="false" aria-controls="tab-premium" id="tab-btn-premium" data-tab="premium">
+            <span class="tab-name">GP +</span>
+          </button>
         </div>
 
-        <div class="product-card">
-          <div class="product-logo product-logo-standard">
-            <img src="/assets/img/GP.png" alt="GP - 5KW to 12KW Power Solutions" loading="lazy">
+        <!-- Tab Panels -->
+        <div class="product-tab-panels">
+          <!-- GP Mini Panel -->
+          <div class="product-tab-panel active" id="tab-mini" role="tabpanel" aria-labelledby="tab-btn-mini">
+            <div class="products-grid">
+              <div class="product-card">
+                <div class="product-logo product-logo-mini">
+                  <img src="/assets/img/GP Mini.png" alt="GP Mini - 300w to 4.5KW Power Solutions" loading="lazy">
+                </div>
+                <p class="product-description">Compact, efficient, and affordable designed for customers seeking reliable power in a smaller, budget-friendly solution.</p>
+              </div>
+            </div>
           </div>
-          <h3>GP</h3>
-          <p class="product-power">(5KW-12KW)</p>
-          <p class="product-description">Our standard line offering a balanced combination of performance, durability, and versatility for everyday applications.</p>
-        </div>
 
-        <div class="product-card">
-          <div class="product-logo product-logo-premium">
-            <img src="/assets/img/GP +.png" alt="GP Plus - 300KW and Above Premium Power Solutions" loading="lazy">
+          <!-- GP Standard Panel -->
+          <div class="product-tab-panel" id="tab-standard" role="tabpanel" aria-labelledby="tab-btn-standard">
+            <div class="products-grid">
+              <div class="product-card">
+                <div class="product-logo product-logo-standard">
+                  <img src="/assets/img/GP.png" alt="GP - 5KW to 12KW Power Solutions" loading="lazy">
+                </div>
+                <p class="product-description">Our standard line offering a balanced combination of performance, durability, and versatility for everyday applications.</p>
+              </div>
+            </div>
           </div>
-          <h3>GP +</h3>
-          <p class="product-power">(&gt;=300KW)</p>
-          <p class="product-description">The premium choice, engineered with advanced features and maximum power to meet the most demanding needs.</p>
+
+          <!-- GP Plus Panel -->
+          <div class="product-tab-panel" id="tab-premium" role="tabpanel" aria-labelledby="tab-btn-premium">
+            <div class="products-grid">
+              <div class="product-card">
+                <div class="product-logo product-logo-premium">
+                  <img src="/assets/img/GP +.png" alt="GP Plus - 300KW and Above Premium Power Solutions" loading="lazy">
+                </div>
+                <p class="product-description">The premium choice, engineered with advanced features and maximum power to meet the most demanding needs.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -520,17 +690,6 @@
         <div class="faq-item">
           <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-1">
             <span>How long do lithium batteries last?</span>
-            <span class="faq-icon" aria-hidden="true">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="6 9 12 15 18 9"></polyline>
-              </svg>
-            </span>
-          </button>
-          <div class="faq-answer" id="faq-answer-1" role="region" aria-hidden="true">Modern lithium batteries typically last 5–10 years depending on usage patterns and proper maintenance. Our systems include monitoring to maximize lifespan.</div>
-        </div>
-        <div class="faq-item">
-          <button class="faq-question" aria-expanded="false" aria-controls="faq-answer-2">
-            <span>Can I power my entire home with solar?</span>
             <span class="faq-icon" aria-hidden="true">
               <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <polyline points="6 9 12 15 18 9"></polyline>
@@ -925,6 +1084,69 @@
 
   <!-- Reading Progress Bar -->
   <div class="progress-bar" id="progress-bar"></div>
+
+  <!-- Cookie Consent Banner -->
+  <div id="cookie-consent" class="cookie-consent" role="dialog" aria-label="Cookie consent" aria-hidden="true">
+    <div class="cookie-consent-content">
+      <div class="cookie-consent-text">
+        <p>We use cookies to enhance your browsing experience, analyze site traffic, and personalize content. By clicking "Accept All", you consent to our use of cookies. <a href="#privacy" class="cookie-link">Learn more</a></p>
+      </div>
+      <div class="cookie-consent-actions">
+        <button id="cookie-accept-all" class="btn btn-primary btn-sm">Accept All</button>
+        <button id="cookie-accept-necessary" class="btn btn-secondary btn-sm">Necessary Only</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Exit Intent Popup -->
+  <div id="exit-intent-popup" class="exit-intent-popup" role="dialog" aria-label="Special offer" aria-hidden="true">
+    <div class="exit-intent-content">
+      <button class="exit-intent-close" id="exit-intent-close" aria-label="Close popup">&times;</button>
+      <div class="exit-intent-icon">⚡</div>
+      <h3>Don't Miss Out!</h3>
+      <p>Get a <strong>FREE consultation</strong> and estimate for your solar energy solution.</p>
+      <p class="exit-intent-subtitle">Limited time offer - Book your consultation today!</p>
+      <div class="exit-intent-actions">
+        <a href="tel:+251911276877" class="btn btn-primary">Call Now</a>
+        <button class="btn btn-secondary" id="open-form-exit">Get Free Estimate</button>
+      </div>
+      <button class="exit-intent-dismiss" id="exit-intent-dismiss">No thanks, I'll browse</button>
+    </div>
+  </div>
+
+  <!-- Bottom Navigation Menu for Mobile -->
+  <nav class="bottom-nav" role="navigation" aria-label="Bottom navigation">
+    <a href="#home" class="bottom-nav-item" aria-label="Home">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path>
+        <polyline points="9 22 9 12 15 12 15 22"></polyline>
+      </svg>
+      <span>Home</span>
+    </a>
+    <a href="#about" class="bottom-nav-item" aria-label="About">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <line x1="12" y1="16" x2="12" y2="12"></line>
+        <line x1="12" y1="8" x2="12.01" y2="8"></line>
+      </svg>
+      <span>About</span>
+    </a>
+    <a href="#solutions" class="bottom-nav-item" aria-label="Services">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <rect x="3" y="3" width="7" height="7"></rect>
+        <rect x="14" y="3" width="7" height="7"></rect>
+        <rect x="14" y="14" width="7" height="7"></rect>
+        <rect x="3" y="14" width="7" height="7"></rect>
+      </svg>
+      <span>Services</span>
+    </a>
+    <a href="#contact" class="bottom-nav-item" aria-label="Contact">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+      </svg>
+      <span>Contact</span>
+    </a>
+  </nav>
 
   <!-- Defer non-critical JavaScript for performance -->
   <script src="/assets/js/main.js" defer></script>

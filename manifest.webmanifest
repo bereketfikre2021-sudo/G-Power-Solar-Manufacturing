@@ -1,26 +1,32 @@
 {
-
-
-
-  "name": "GreenPower Ethiopia",
-
-  "short_name": "GreenPower",
-
+  "name": "G-Power Solar Manufacturing",
+  "short_name": "G-Power",
+  "description": "Leading solar energy solutions provider in Ethiopia",
   "start_url": "/",
-
   "display": "standalone",
-
-  "background_color": "#F0FFF4",
-
-  "theme_color": "#28A745",
-
+  "background_color": "#FFFFFF",
+  "theme_color": "#00D9A5",
+  "orientation": "portrait-primary",
   "icons": [
-
-    { "src": "/assets/img/icon-192.png", "sizes": "192x192", "type": "image/png" },
-
-    { "src": "/assets/img/icon-512.png", "sizes": "512x512", "type": "image/png" }
-
-  ]
-
+    {
+      "src": "/apple-touch-icon.png",
+      "sizes": "180x180",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/favicon-32x32.png",
+      "sizes": "32x32",
+      "type": "image/png"
+    },
+    {
+      "src": "/favicon-16x16.png",
+      "sizes": "16x16",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["business", "utilities"],
+  "lang": "en",
+  "dir": "ltr"
 }
 
